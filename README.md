@@ -11,4 +11,6 @@ Credit to A. Torralba and A. Olivia (2003) for providing the image corpus for th
 
 A. Torralba and A. Oliva (2003). Statistics of natural image categories. In Network: computation in neural systems. Vol. 14, 391-412.
 
+* * *
+
 TODO: Add citation for GLIMPSE Library.
