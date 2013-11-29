@@ -1,11 +1,13 @@
-import os, shutil, random
+import os
+import shutil
+import random
 
 class Corpus: 
 	def __init__(self, name, percent):
 		self.name = name
 		self.cd = os.path.dirname(os.path.realpath(__file__))
 		self.imagedir = os.path.join(self.cd, "corpus")
-		self.newimagedir = os.path.join(self.cd, self.name)	
+		self.newimagedir = os.path.join(self.cd, self.name, "data")	
 
 		# Create and rework paths.
 		
@@ -31,7 +33,7 @@ class Corpus:
 				self.unused[subdir].remove(image)
 				filepath = os.path.join(self.imagedir, subdir, image) 
 				target = os.path.join(self.newimagedir, subdir)
-				print filepath, target, "\n"
+				print(filepath, target, "\n")
 				shutil.copy(filepath, target)	
 		
 
