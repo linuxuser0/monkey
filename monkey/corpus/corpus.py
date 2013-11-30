@@ -24,7 +24,9 @@ class Corpus:
 
         self.images = []
         self.unused = {} 
+        self.subdirs = []
         for subdir in os.listdir(self.imagedir):
+            self.subdirs.append(subdir)
             fullpath = os.path.join(self.imagedir, subdir)
             self.images = os.listdir(fullpath)
             self.unused[subdir] = os.listdir(fullpath)    
@@ -39,11 +41,12 @@ class Corpus:
                 
         print(self.newimagedir)
 
-        
+    def get_corpus(self):
+        return self.newimagedir
 
-        
-
-    def getNextImage(self, name):
+    def get_next_image(self, name=None):
+        if name is None:
+            name = random.choice(self.subdirs)
         item = random.choice(self.unused[name])
         self.unused[name].remove(item)
         fullpath = os.path.join(self.imagedir, name, item)
