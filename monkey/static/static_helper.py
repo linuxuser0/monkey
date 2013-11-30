@@ -1,10 +1,12 @@
-import glimpse.glab.api.*
+from glimpse.glap.api import *
 
 class StaticHelper():
-    
-    def __init__(self, count):
-        SetCorpus("cell")
-        ImprintS2Prototypes(count)
+    def __init__():
+        pass
 
-    def getPrototype():
-        return GetPrototype()
+    def imprint_new_cells(prototype):
+        cells = cell_helper.CellHelper().getPrototype()
+        SetS2Prototypes(prototype + cells)
+        finalproto = GetPrototype()
+        results = GetEvaluationResults().score
+        return finalproto, results 

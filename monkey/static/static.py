@@ -1,5 +1,6 @@
 from glimpse.glab.api import *
 import monkey.corpus.corpus as corpus
+import static_helper
 
 class Static():
 
@@ -24,7 +25,7 @@ class Static():
             
     def step(self):
         self.c.get_next_image()
-        SetS2Prototypes(GetPrototype() + StaticHelper(self.add).getPrototype())
+        SetS2Prototypes(GetPrototype() + static_helper.StaticHelper(self.add).getPrototype())
 
     def classify(self):
         print(EvaluateClassifier())
