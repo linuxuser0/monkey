@@ -1,6 +1,6 @@
 from glimpse.glab.api import *
 
-class StaticHelper():
+class CellHelper():
     
     def __init__(self, count):
         SetCorpus("cell")

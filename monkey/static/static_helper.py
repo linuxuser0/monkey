@@ -1,4 +1,5 @@
 from glimpse.glap.api import *
+import cell_helper
 
 class StaticHelper():
     def __init__():
