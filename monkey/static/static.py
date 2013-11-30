@@ -3,9 +3,13 @@ import monkey.corpus.corpus as corpus
 
 class Static():
 
-    def __init__(self, percent):
+    def __init__(self, initial, add, percent):
          self.c = corpus.Corpus("static", percent)
+         self.initial = initial
+         self.add = add
+         self.percent = percent
          SetCorpus(self.c.get_corpus())
+         ImprintS2Prototypes(initial)
          print("Corpus initialized") 
 
     def run(self, times, interval):
@@ -19,8 +23,8 @@ class Static():
         print("Results below.")
             
     def step(self):
-        ImprintS2Prototypes(10)
         self.c.get_next_image()
+        SetS2Prototypes(GetPrototype() + StaticHelper(self.add).getPrototype())
 
     def classify(self):
         print(EvaluateClassifier())

@@ -8,17 +8,22 @@ class Corpus:
         self.cd = os.path.dirname(os.path.realpath(__file__))
         self.imagedir = os.path.join(self.cd, "data")
         self.newimagedir = os.path.join(os.path.split(self.cd)[0], self.name, "data")    
-        
+        self.celldir = os.path.join(os.path.split(self.cd)[0], self.name, "cell") 
                 
         # Create and rework paths.
         
         if os.path.isdir(self.newimagedir):
             shutil.rmtree(self.newimagedir)
             os.makedirs(self.newimagedir)            
+
+        if os.path.isdir(self.celldir):
+            shutil.rmtree(self.celldir)
+            os.makedirs(self.celldir)
     
         for root, dirs, files in os.walk(self.imagedir):
             for subdir in dirs:
                 os.makedirs(os.path.join(self.newimagedir, subdir))
+                os.makedirs(os.path.join(self.celldir, subdir))
 
         # Now add the images.
 
@@ -36,7 +41,6 @@ class Corpus:
                 self.unused[subdir].remove(image)
                 filepath = os.path.join(self.imagedir, subdir, image) 
                 target = os.path.join(self.newimagedir, subdir)
-                print(filepath, target, "\n")
                 shutil.copy(filepath, target)    
                 
         print(self.newimagedir)
@@ -45,12 +49,18 @@ class Corpus:
         return self.newimagedir
 
     def get_next_image(self, name=None):
+        self.empty_cell()
         if name is None:
             name = random.choice(self.subdirs)
         item = random.choice(self.unused[name])
         self.unused[name].remove(item)
         fullpath = os.path.join(self.imagedir, name, item)
-        target = os.path.join(self.newimagedir, name)
+        target = os.path.join(self.celldir, name)
         shutil.copy(fullpath, target)
         return fullpath    
-    
+   
+    def empty_cell(self):
+        for subdir in os.listdir(self.celldir):
+            fullpath = os.path.join(self.celldir, subdir)
+            shutil.rmtree(fullpath)
+            os.makedirs(fullpath)
