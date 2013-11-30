@@ -10,9 +10,9 @@ class Static():
          self.add = add
          self.percent = percent
          self.results = []
-         self.prototype = GetPrototype()
          SetCorpus(self.c.get_corpus())
          ImprintS2Prototypes(initial)
+         self.prototype = GetPrototype()
          print("Corpus initialized") 
 
     def run(self, times, interval):
@@ -27,9 +27,8 @@ class Static():
             
     def step(self):
         self.c.get_next_image()
-        prototype, results = static_helper.StaticHelper().imprint_new_cells()
+        self.prototype, results = static_helper.StaticHelper().imprint_new_cells(self.prototype, self.add)
         self.results.append(results)
-        self.prototype = prototype
 
     def classify(self):
         print(EvaluateClassifier())
