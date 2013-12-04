@@ -1,11 +1,14 @@
+import os
 from glimpse.glab.api import *
 
 class CellHelper():
     
     def __init__(self, count):
         print("SETTING CORPUS - SHOULD ONLY DO ONCE")
-        SetCorpus("cell") #ISSUE! Being set by called class - how to do multiple glimpse instances?
+        Reset()
+        self.cd = os.path.dirname(os.path.realpath(__file__))
+        SetCorpus(os.path.join(self.cd, "cell"))
         ImprintS2Prototypes(count)
 
-    def getPrototype():
+    def getPrototype(self):
         return GetPrototype()

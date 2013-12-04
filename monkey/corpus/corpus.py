@@ -23,8 +23,7 @@ class Corpus:
         for root, dirs, files in os.walk(self.imagedir):
             for subdir in dirs:
                 os.makedirs(os.path.join(self.newimagedir, subdir))
-                os.makedirs(os.path.join(self.celldir, subdir))
-
+                
         # Now add the images.
 
         self.images = []
@@ -48,15 +47,18 @@ class Corpus:
     def get_corpus(self):
         return self.newimagedir
 
-    def get_next_image(self, name=None):
+    def get_next_images(self, name=None, count=2): 
         self.empty_cell()
         if name is None:
             name = random.choice(self.subdirs)
-        item = random.choice(self.unused[name])
-        self.unused[name].remove(item)
-        fullpath = os.path.join(self.imagedir, name, item)
-        target = os.path.join(self.celldir, name)
-        shutil.copy(fullpath, target)
+        os.makedirs(os.path.join(self.celldir, name))
+        for n in xrange(count):
+            item = random.choice(self.unused[name])
+            self.unused[name].remove(item)
+            fullpath = os.path.join(self.imagedir, name, item)
+            target = os.path.join(self.celldir, name)
+            shutil.copy(fullpath, target)
+
         return fullpath    
    
     def empty_cell(self):

@@ -26,8 +26,10 @@ class Static():
         print("Results below.")
             
     def step(self):
-        self.c.get_next_image()
-        self.prototype, results = static_helper.StaticHelper().imprint_new_cells(self.prototype, self.add)
+        self.c.get_next_images()
+        StoreExperiment("experiments")
+        self.prototype, results = static_helper.StaticHelper().imprint_new_cells(self.prototype, self.add, self.c.get_corpus())
+        LoadExperiment("experiments")
         self.results.append(results)
 
     def classify(self):
