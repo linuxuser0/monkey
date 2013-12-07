@@ -6,7 +6,7 @@ class Corpus:
     def __init__(self, name, percent):
         self.name = name
         self.cd = os.path.dirname(os.path.realpath(__file__))
-        self.imagedir = os.path.join(self.cd, "data")
+        self.imagedir = os.path.join(self.cd, "corpus_data")
         self.newimagedir = os.path.join(self.name, "data")    
         self.celldir = os.path.join(self.name, "cell") 
                 

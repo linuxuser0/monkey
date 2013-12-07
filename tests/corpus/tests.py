@@ -5,6 +5,7 @@ import monkey.corpus as corpus
 class TestCorpus():
     
     def setup(self):
+        Reset()
         try:
             shutil.rmtree("monkey/test")
         except Exception:

@@ -11,6 +11,5 @@ class CellHelper():
         Reset()
         SetCorpus(os.path.join(self.path, "cell"))
         ImprintS2Prototypes(self.count)
-
-    def getPrototype(self):
         return GetPrototype()
+
