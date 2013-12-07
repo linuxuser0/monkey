@@ -15,7 +15,7 @@ class TestStatic():
         ImprintS2Prototypes(5)
         self.sample_prototype = GetPrototype()
         self.sample_cell_helper = cell_helper.CellHelper(path, 5)
-        self.sample_static_helper = static_helper.StaticHelper(path, None, 5)
+        self.sample_static_helper = static_helper.StaticHelper(path, self.sample_prototype, 5)
         self.sample_corpus.get_next_images()
        
     def teardown(self):

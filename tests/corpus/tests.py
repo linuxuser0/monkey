@@ -1,6 +1,7 @@
 import os
 import shutil
 import monkey.corpus as corpus
+from glimpse.glab.api import *
 
 class TestCorpus():
     
