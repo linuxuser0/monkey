@@ -1,8 +1,8 @@
 import os
 import shutil
-import monkey.monkey.corpus.corpus as corpus
-import monkey.monkey.helpers.cell_helper as cell_helper 
-import monkey.monkey.helpers.static_helper as static_helper
+import monkey.corpus as corpus
+import monkey.helpers.cell_helper as cell_helper 
+import monkey.helpers.static_helper as static_helper
 
 class TestStatic():
     
