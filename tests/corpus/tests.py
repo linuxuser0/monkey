@@ -1,7 +1,6 @@
 import os
 import shutil
-import unittest
-import monkey.monkey.corpus.corpus as corpus
+import monkey.corpus as corpus
 
 class TestCorpus():
     
