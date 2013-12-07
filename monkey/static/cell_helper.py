@@ -3,8 +3,7 @@ from glimpse.glab.api import *
 
 class CellHelper():
     
-    def __init__(self, count):
-        print("SETTING CORPUS - SHOULD ONLY DO ONCE")
+    def __init__(self, count): #add path
         Reset()
         self.cd = os.path.dirname(os.path.realpath(__file__))
         SetCorpus(os.path.join(self.cd, "cell"))

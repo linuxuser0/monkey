@@ -7,7 +7,7 @@ class StaticHelper():
         pass
 
     def imprint_new_cells(self, prototype, add, corpus):
-        prototype = numpy.concatentate(prototype, cell_helper.CellHelper(add).getPrototype())
+        prototype = numpy.append(prototype, cell_helper.CellHelper(add).getPrototype())
         Reset()
         SetCorpus(corpus)
         SetS2Prototypes(prototype) #not setting properly - DEBUG!
