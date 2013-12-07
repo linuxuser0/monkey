@@ -1,13 +1,16 @@
 import os
 import shutil
 import monkey.monkey.corpus.corpus as corpus
-import monkey.monkey.cell.cell_helper as cell_helper 
+import monkey.monkey.helpers.cell_helper as cell_helper 
+import monkey.monkey.helpers.static_helper as static_helper
 
 class TestStatic():
     
     def setup(self):
-        self.sample_corpus = corpus.Corpus("monkey/test_static", 2)
-        self.sample_cell_helper = cell_helper.CellHelper("monkey/test_static", 5)
+        path = "monkey/test_static"
+        self.sample_corpus = corpus.Corpus(path, 2)
+        self.sample_cell_helper = cell_helper.CellHelper(path, 5)
+        selt.sample_static_helper = static_helper.StaticHelper(path, None, 5, sample_corpus)
        
     def teardown(self):
         try:
@@ -17,8 +20,8 @@ class TestStatic():
     
     def test_cell_helper(self):
         self.sample_corpus.get_next_images()
-        self.sample_cell_helper.imprint()
-        assert not self.sample_cell_helper.getPrototype() is None
+        assert not self.sample_cell_helper.imprint() is None
 
     def test_static_helper(self):
+        assert not self.static_helper.imprint() is None
         

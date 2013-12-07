@@ -10,7 +10,7 @@ class StaticHelper():
         prototype = numpy.append(prototype, cell_helper.CellHelper(add).getPrototype())
         Reset()
         SetCorpus(corpus)
-        SetS2Prototypes(prototype) #not setting properly - DEBUG!
+        SetS2Prototypes(prototype)
         EvaluateClassifier()
         results = GetEvaluationResults().score
         return prototype, results 
