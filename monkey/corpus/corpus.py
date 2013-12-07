@@ -7,8 +7,8 @@ class Corpus:
         self.name = name
         self.cd = os.path.dirname(os.path.realpath(__file__))
         self.imagedir = os.path.join(self.cd, "data")
-        self.newimagedir = os.path.join(os.path.split(self.cd)[0], self.name, "data")    
-        self.celldir = os.path.join(os.path.split(self.cd)[0], self.name, "cell") 
+        self.newimagedir = os.path.join(self.name, "data")    
+        self.celldir = os.path.join(self.name, "cell") 
                 
         # Create and rework paths.
         
@@ -49,11 +49,10 @@ class Corpus:
 
     def get_next_images(self, name=None, count=2): 
         self.empty_cell()
+        print "Cell Directory: ", self.celldir
         if name is None:
             name = random.choice(self.subdirs)
         os.makedirs(os.path.join(self.celldir, name))
-        print name
-        print self.celldir
         for n in xrange(count):
             item = random.choice(self.unused[name])
             self.unused[name].remove(item)

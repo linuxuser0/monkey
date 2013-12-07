@@ -11,7 +11,7 @@ class TestCorpus():
         except Exception:
             pass
 
-        self.test_corpus = corpus.Corpus("test", 2)
+        self.test_corpus = corpus.Corpus("monkey/test", 2)
         
     def teardown(self):
         try:
