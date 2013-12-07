@@ -1,3 +1,4 @@
+import numpy
 from glimpse.glab.api import *
 import cell_helper
 
@@ -6,11 +7,10 @@ class StaticHelper():
         pass
 
     def imprint_new_cells(self, prototype, add, corpus):
-        cells = cell_helper.CellHelper(add).getPrototype()
+        prototype = numpy.concatentate(prototype, cell_helper.CellHelper(add).getPrototype())
         Reset()
         SetCorpus(corpus)
-        SetS2Prototypes(prototype + cells)
-
-        finalproto = GetPrototype()
+        SetS2Prototypes(prototype) #not setting properly - DEBUG!
+        EvaluateClassifier()
         results = GetEvaluationResults().score
-        return finalproto, results 
+        return prototype, results 

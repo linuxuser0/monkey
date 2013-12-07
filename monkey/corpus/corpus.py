@@ -14,11 +14,11 @@ class Corpus:
         
         if os.path.isdir(self.newimagedir):
             shutil.rmtree(self.newimagedir)
-            os.makedirs(self.newimagedir)            
+        os.makedirs(self.newimagedir)            
 
         if os.path.isdir(self.celldir):
             shutil.rmtree(self.celldir)
-            os.makedirs(self.celldir)
+        os.makedirs(self.celldir)
     
         for root, dirs, files in os.walk(self.imagedir):
             for subdir in dirs:
@@ -52,6 +52,8 @@ class Corpus:
         if name is None:
             name = random.choice(self.subdirs)
         os.makedirs(os.path.join(self.celldir, name))
+        print name
+        print self.celldir
         for n in xrange(count):
             item = random.choice(self.unused[name])
             self.unused[name].remove(item)
