@@ -28,9 +28,9 @@ class TestStatic():
         assert not self.sample_cell_helper.imprint() is None
 
     def test_static_helper(self):
-        init_prototype = GetPrototype()
-        StoreExperiment("test_experiment")
+        init_prototype = GetPrototype() 
+        #StoreExperiment("test_experiment")
         prototype, results = self.sample_static_helper.imprint()
-        LoadExperiment("test_experiment")
+        #LoadExperiment("test_experiment")
         assert prototype != init_prototype
 

@@ -12,11 +12,17 @@ class StaticHelper():
 
     def imprint(self):
         helper = cell_helper.CellHelper(self.path, self.add)
-        prototype = numpy.append(self.prototype, helper.imprint())
+        print "self.prototype:"
+        print self.prototype
+        print "helper.imprint()"
+        print helper.imprint()
+        new_prototype = numpy.concatenate([self.prototype, helper.imprint()])
+        print "new_prototype"
+        print new_prototype
+        print type(self.prototype)
         Reset()
-        print self.corpus
         SetCorpus(self.corpus)
         SetS2Prototypes(self.prototype)
         EvaluateClassifier()
         results = GetEvaluationResults().score
-        return prototype, results 
+        return new_prototype, results 
