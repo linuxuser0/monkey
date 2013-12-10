@@ -23,7 +23,7 @@ class Static():
             self.step()
             
     def step(self):
-        self.c.get_next_images()
+        self.corpus.get_next_images()
         self.prototype, test_results = static_helper.StaticHelper("static", self.prototypes, self.add).imprint()
         self.results.append(test_results)
 
