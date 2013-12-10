@@ -3,7 +3,7 @@ import shutil
 import random
 
 class Corpus: 
-    def __init__(self, name, percent):
+    def __init__(self, name, percent=50):
         self.name = name
         self.cd = os.path.dirname(os.path.realpath(__file__))
         self.imagedir = os.path.join(self.cd, "corpus_data")

@@ -7,10 +7,11 @@ import cell_helper
 
 class StaticHelper():
 
-    def __init__(self, path, prototypes, add, layer="C2"): 
+    def __init__(self, path, prototypes, delta, window, layer="C2"): 
         self.path = path
         self.prototypes = numpy.concatenate(prototypes)
-        self.add = add
+        self.delta = delta
+        self.window = window
         self.exp = glimpse.experiment.ExperimentData()
         self.corpus = os.path.join(self.path, "data") 
         self.exp.extractor.model = glimpse.models.MakeModel()
@@ -18,9 +19,13 @@ class StaticHelper():
         self.pool = glimpse.pools.MakePool()
 
     def imprint(self):
-        helper = cell_helper.CellHelper(self.path, self.add)
+        helper = cell_helper.CellHelper(self.path, self.delta)
         helper_prototypes = numpy.concatenate([helper.imprint()])
+        if self.window is not None: 
+            self.prototypes = self.prototypes[self.delta:] 
+
         new_prototypes = numpy.concatenate([self.prototypes, helper_prototypes])
+        print new_prototypes.shape
         
         glimpse.experiment.SetCorpus(self.exp, self.corpus)
         print self.exp.extractor.model.params.s2_kernel_shapes
