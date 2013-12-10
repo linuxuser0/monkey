@@ -28,10 +28,10 @@ class StaticHelper():
         print "Computing activation:"
         glimpse.experiment.ComputeActivation(self.exp, self.layer, self.pool)
         print "Training and testing classifier:"
-        glimpse.experiment.TrainAndTestClassifier(self.exp)
-        results = glimpse.experiment.GetEvaluationResults().score
+        glimpse.experiment.TrainAndTestClassifier(self.exp, self.layer)
+        results = glimpse.experiment.GetEvaluationResults(self.exp).score
         print "RESULTS:"
-        print results
+        print results 
         print "Mission success."
         exit()
         return new_prototype, results 
