@@ -1,6 +1,6 @@
 from glimpse.glab.api import *
-import monkey.corpus.corpus as corpus
-import static_helper
+import monkey.corpus as corpus
+import monkey.helpers.static_helper as static_helper
 
 class Static():
 

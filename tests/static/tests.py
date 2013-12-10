@@ -1,5 +1,6 @@
 import os
 import shutil
+import numpy
 import monkey.corpus as corpus
 import monkey.helpers.cell_helper as cell_helper 
 import monkey.helpers.static_helper as static_helper
@@ -12,10 +13,10 @@ class TestStatic():
         path = "monkey/test_static"
         self.sample_corpus = corpus.Corpus(path, 2)
         SetCorpus(self.sample_corpus.get_corpus())
-        ImprintS2Prototypes(5)
-        self.sample_prototype = GetPrototype()
+        ImprintS2Prototypes(20) 
+        self.sample_prototypes = numpy.concatenate([GetPrototype(n) for n in range(GetNumPrototypes())])
         self.sample_cell_helper = cell_helper.CellHelper(path, 5)
-        self.sample_static_helper = static_helper.StaticHelper(path, self.sample_prototype, 5)
+        self.sample_static_helper = static_helper.StaticHelper(path, self.sample_prototypes, 20)
         self.sample_corpus.get_next_images()
        
     def teardown(self):
@@ -28,9 +29,8 @@ class TestStatic():
         assert not self.sample_cell_helper.imprint() is None
 
     def test_static_helper(self):
-        init_prototype = GetPrototype() 
         #StoreExperiment("test_experiment")
         prototype, results = self.sample_static_helper.imprint()
         #LoadExperiment("test_experiment")
-        assert prototype != init_prototype
+        assert prototype != None 
 

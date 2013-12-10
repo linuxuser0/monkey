@@ -1,6 +1,6 @@
 import monkey.corpus as corpus
 import monkey.dynamic as dynamic
-import monkey.static.static as static
+import monkey.static as static
 
 s = static.Static(10, 2, 50)
 

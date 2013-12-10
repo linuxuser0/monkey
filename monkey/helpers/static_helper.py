@@ -22,7 +22,10 @@ class StaticHelper():
         print type(self.prototype)
         Reset()
         SetCorpus(self.corpus)
-        SetS2Prototypes(self.prototype)
+        print "THESE ARE PROTOTYPES"
+        print SetS2Prototypes(self.prototype)
+        print "THESE ARE PARAMS"
+        print GetParams()
         EvaluateClassifier()
         results = GetEvaluationResults().score
         return new_prototype, results 
