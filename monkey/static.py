@@ -1,37 +1,30 @@
-from glimpse.glab.api import *
-import monkey.corpus as corpus
-import monkey.helpers.static_helper as static_helper
+import glimpse.experiment
+import glimpse.models
+import monkey.corpus
+import monkey.helpers.static_helper
 
 class Static():
 
     def __init__(self, initial, add, percent):
-         self.c = corpus.Corpus("static", percent)
+         self.corpus = monkey.corpus.Corpus("static", percent)
          self.initial = initial
          self.add = add
          self.percent = percent
          self.results = []
-         SetCorpus(self.c.get_corpus())
-         ImprintS2Prototypes(initial)
-         self.prototype = GetPrototype()
-         print("Corpus initialized") 
+         self.exp = glimpse.experiment.ExperimentData()
+         glimpse.experiment.SetModel(self.exp, model=glimpse.models.MakeModel())
+         glimpse.experiment.SetCorpus(self.exp, self.corpus.get_corpus())
+         glimpse.experiment.MakePrototypes(self.exp, num_prototypes=10, algorithm="imprint")
+         self.prototypes = [glimpse.experiment.GetPrototype(self.exp, n) for n in range(
+             glimpse.experiment.GetNumPrototypes(self.exp))]
 
     def run(self, times, interval):
         for x in xrange(times): 
             self.step()
-            print("Step " + str(x) + " complete")
-            if x % interval == 0:
-                self.classify()
-                print("Classification complete")
-
-        print("Results below.")
             
     def step(self):
         self.c.get_next_images()
-        StoreExperiment("experiments")
-        self.prototype, test_results = static_helper.StaticHelper("static", self.prototype, self.add).imprint()
-        LoadExperiment("experiments")
+        self.prototype, test_results = static_helper.StaticHelper("static", self.prototypes, self.add).imprint()
         self.results.append(test_results)
 
-    def classify(self):
-        print(EvaluateClassifier())
 
