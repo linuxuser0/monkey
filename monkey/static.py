@@ -28,7 +28,7 @@ class Static():
     def step(self):
         self.c.get_next_images()
         StoreExperiment("experiments")
-        self.prototype, test_results = static_helper.StaticHelper().imprint_new_cells(self.prototype, self.add, self.c.get_corpus())
+        self.prototype, test_results = static_helper.StaticHelper("static", self.prototype, self.add).imprint()
         LoadExperiment("experiments")
         self.results.append(test_results)
 
