@@ -38,6 +38,4 @@ class StaticHelper():
         results = glimpse.experiment.GetEvaluationResults(self.exp).score
         print "RESULTS:"
         print results 
-        print "Mission success."
-        exit()
-        return new_prototype, results 
+        return new_prototypes, results 

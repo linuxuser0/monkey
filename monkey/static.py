@@ -21,6 +21,8 @@ class Static():
     def run(self, times):
         for x in xrange(times): 
             self.step()
+        print self.results
+        print "AVERAGE: {0}".format(sum(self.results)/len(self.results))
             
     def step(self):
         self.corpus.get_next_images()

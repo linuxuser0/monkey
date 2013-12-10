@@ -10,6 +10,7 @@ class CellHelper():
         self.exp = glimpse.experiment.ExperimentData()
         self.corpus = os.path.join(self.path, "cell")
         self.exp.extractor.model = glimpse.models.MakeModel()
+        print self.corpus
 
     def imprint(self):
         glimpse.experiment.SetCorpus(self.exp, self.corpus) 

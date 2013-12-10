@@ -49,10 +49,10 @@ class Corpus:
 
     def get_next_images(self, name=None, count=2): 
         self.empty_cell()
-        print "Cell Directory: ", self.celldir
         if name is None:
             name = random.choice(self.subdirs)
-        os.makedirs(os.path.join(self.celldir, name))
+        fullpath = os.path.join(self.celldir, name)
+        os.makedirs(fullpath)
         for n in xrange(count):
             item = random.choice(self.unused[name])
             self.unused[name].remove(item)
@@ -63,7 +63,9 @@ class Corpus:
         return fullpath    
    
     def empty_cell(self):
-        for subdir in os.listdir(self.celldir):
-            fullpath = os.path.join(self.celldir, subdir)
-            shutil.rmtree(fullpath)
-            os.makedirs(fullpath)
+        try:
+            shutil.rmtree(self.celldir)
+        except Exception:
+            pass
+        
+        os.makedirs(self.celldir)
