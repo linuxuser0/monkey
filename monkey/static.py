@@ -18,7 +18,7 @@ class Static():
          self.prototypes = [[glimpse.experiment.GetPrototype(self.exp, n)] for n in range(
              glimpse.experiment.GetNumPrototypes(self.exp))]
 
-    def run(self, times, interval):
+    def run(self, times):
         for x in xrange(times): 
             self.step()
             

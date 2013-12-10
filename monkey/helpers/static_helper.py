@@ -25,6 +25,7 @@ class StaticHelper():
             self.prototypes = self.prototypes[self.delta:] 
 
         new_prototypes = numpy.concatenate([self.prototypes, helper_prototypes])
+        print "NEWPROTOSHAPE"
         print new_prototypes.shape
         
         glimpse.experiment.SetCorpus(self.exp, self.corpus)
