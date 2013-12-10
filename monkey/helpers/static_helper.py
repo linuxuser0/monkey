@@ -19,23 +19,19 @@ class StaticHelper():
 
     def imprint(self):
         helper = cell_helper.CellHelper(self.path, self.add)
-        print self.prototypes.shape
-        #print helper.imprint().shape
-        #print "self.prototype:"
-        #print self.prototypes
-        #print "helper.imprint()"
-        #print helper.imprint()
-        new_prototypes = [numpy.concatenate([self.prototypes, helper.imprint()])]
-       # print "new_prototype"
-       # print new_prototypes
+        helper_prototypes = numpy.concatenate([helper.imprint()])
+        new_prototypes = numpy.concatenate([self.prototypes, helper_prototypes])
         
         glimpse.experiment.SetCorpus(self.exp, self.corpus)
         print self.exp.extractor.model.params.s2_kernel_shapes
-        self.exp.extractor.model.s2_kernels = new_prototypes
+        self.exp.extractor.model.s2_kernels = [new_prototypes]
+        print "Computing activation:"
         glimpse.experiment.ComputeActivation(self.exp, self.layer, self.pool)
+        print "Training and testing classifier:"
         glimpse.experiment.TrainAndTestClassifier(self.exp)
         results = glimpse.experiment.GetEvaluationResults().score
         print "RESULTS:"
-
         print results
+        #print "Mission success."
+        #exit()
         return new_prototype, results 
