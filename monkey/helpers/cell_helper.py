@@ -1,18 +1,16 @@
 import os
-from glimpse.glab.api import *
+import glimpse.experiment
 
 class CellHelper():
     
-    def __init__(self, path, count): #add path
+    def __init__(self, path, count): 
         self.path = path
         self.count = count
+        self.exp = glimpse.experiment.ExperimentData()
 
     def imprint(self):
-        Reset()
-        SetCorpus(os.path.join(self.path, "cell"))
-        print "CELL PROTOTYPES", self.count
-        ImprintS2Prototypes(self.count)
-        print "CELL PROTOTYPE"
-        print GetPrototype()
-        return GetPrototype()
+        glimpse.experiment.SetCorpus(os.path.join(self.path, "cell"))
+        glimpse.experiment.MakePrototypes(self.exp, num_prototypes=self.count, algorithm="imprint")
+        return [[glimpse.experiment.GetPrototype(self.exp, n)] for n in range(
+            glimpse.experiment.GetNumPrototypes(self.exp))]
 

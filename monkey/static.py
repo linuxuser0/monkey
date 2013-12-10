@@ -15,7 +15,7 @@ class Static():
          glimpse.experiment.SetModel(self.exp, model=glimpse.models.MakeModel())
          glimpse.experiment.SetCorpus(self.exp, self.corpus.get_corpus())
          glimpse.experiment.MakePrototypes(self.exp, num_prototypes=10, algorithm="imprint")
-         self.prototypes = [glimpse.experiment.GetPrototype(self.exp, n) for n in range(
+         self.prototypes = [[glimpse.experiment.GetPrototype(self.exp, n)] for n in range(
              glimpse.experiment.GetNumPrototypes(self.exp))]
 
     def run(self, times, interval):
@@ -24,7 +24,8 @@ class Static():
             
     def step(self):
         self.corpus.get_next_images()
-        self.prototype, test_results = static_helper.StaticHelper("static", self.prototypes, self.add).imprint()
+        self.prototype, test_results = monkey.helpers.static_helper.StaticHelper(
+                "static", self.prototypes, self.add).imprint()
         self.results.append(test_results)
 
 
