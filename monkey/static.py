@@ -19,15 +19,11 @@ class Static():
              glimpse.experiment.GetNumPrototypes(self.exp))]
 
     def run(self, times):
+        helper = monkey.helpers.static_helper.StaticHelper("static", self.prototypes, self.delta, self.window)
         for x in xrange(times): 
-            self.step()
-        print self.results
-        print "AVERAGE: {0}".format(sum(self.results)/len(self.results))
+            helper.step()
+        print helper.results
+        print "AVERAGE: {0}".format(sum(helper.results)/len(helper.results))
             
-    def step(self):
-        self.corpus.get_next_images()
-        self.prototype, test_results = monkey.helpers.static_helper.StaticHelper(
-                "static", self.prototypes, self.delta, self.window).imprint()
-        self.results.append(test_results)
 
 

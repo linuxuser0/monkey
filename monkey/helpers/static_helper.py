@@ -17,10 +17,12 @@ class StaticHelper():
         self.exp.extractor.model = glimpse.models.MakeModel()
         self.layer = layer
         self.pool = glimpse.pools.MakePool()
+        self.results = []
+        self.helper = cell_helper.CellHelper(self.path, self.delta)
 
     def imprint(self):
-        helper = cell_helper.CellHelper(self.path, self.delta)
-        helper_prototypes = numpy.concatenate([helper.imprint()])
+
+        helper_prototypes = numpy.concatenate([self.helper.imprint()])
         if self.window is not None: 
             self.prototypes = self.prototypes[self.delta:] 
 
@@ -38,4 +40,10 @@ class StaticHelper():
         results = glimpse.experiment.GetEvaluationResults(self.exp).score
         print "RESULTS:"
         print results 
-        return new_prototypes, results 
+        self.prototypes = new_prototypes 
+        self.results.append(results)
+
+    def step(self):
+        self.helper.get_next_images()
+        self.imprint()
+        
