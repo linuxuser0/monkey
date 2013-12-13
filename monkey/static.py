@@ -19,7 +19,8 @@ class Static():
              glimpse.experiment.GetNumPrototypes(self.exp))]
 
     def run(self, times):
-        helper = monkey.helpers.static_helper.StaticHelper("static", self.prototypes, self.delta, self.window)
+        helper = monkey.helpers.static_helper.StaticHelper("static", self.prototypes, self.delta,
+                self.window, self.corpus)
         for x in xrange(times): 
             helper.step()
         print helper.results
